@@ -1,7 +1,5 @@
 package commands;
 
-import commandLine.Console;
-import commandLine.Printable;
 import exceptions.IllegalArguments;
 import managers.CollectionManager;
 import utility.Request;
@@ -11,12 +9,9 @@ import utility.ResponseStatus;
 public class PrintUniqueSemesterEnumCommand extends Command{
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
-    /**Поле, отвечающее за вывод информации о работе команды*/
-    private final Printable console;
-    public PrintUniqueSemesterEnumCommand(CollectionManager collectionManager, Printable console) {
+    public PrintUniqueSemesterEnumCommand(CollectionManager collectionManager) {
         super("print_unique_semester_enum", "вывести уникальные значения поля semesterEnum всех элементов в коллекции");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
 
     /** Метод для выполнения команды

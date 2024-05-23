@@ -1,7 +1,5 @@
 package commands;
 
-import commandLine.Console;
-import commandLine.Printable;
 import exceptions.*;
 import managers.CollectionManager;
 import utility.Request;
@@ -9,14 +7,11 @@ import utility.Response;
 import utility.ResponseStatus;
 
 public class ClearCommand extends Command{
-    /**Поле, отвечающее за вывод информации о работе команды*/
-    private final Printable console;
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
-    public ClearCommand(CollectionManager collectionManager, Printable console) {
+    public ClearCommand(CollectionManager collectionManager) {
         super("clear", "очистить коллекцию");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
     /** Метод для выполнения команды
      * @param request Аргументы команды

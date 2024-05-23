@@ -1,7 +1,5 @@
 package commands;
 
-import commandLine.Console;
-import commandLine.Printable;
 import exceptions.IllegalArguments;
 import managers.CollectionManager;
 import utility.Request;
@@ -11,12 +9,9 @@ import utility.ResponseStatus;
 public class RemoveByIDCommand extends Command {
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
-    /**Поле, отвечающее за вывод информации о работе команды*/
-    private final Printable console;
-    public RemoveByIDCommand(CollectionManager collectionManager, Printable console) {
+    public RemoveByIDCommand(CollectionManager collectionManager) {
         super("remove_by_id", "id : удалить элемент из коллекции по его id");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
     /** Метод для выполнения команды
      * @param request Аргументы команды
@@ -28,8 +23,12 @@ public class RemoveByIDCommand extends Command {
         if (request.getArgs().isBlank()) throw new IllegalArguments("В команде remove_by_id должны быть аргументы");
         try {
             int id = Integer.parseInt(request.getArgs().trim());
-            collectionManager.removeByID(id);
-            return new Response(ResponseStatus.OK, "Элемент по заданному id был удалён");
+            if (collectionManager.checkIfExists(id)) {
+                collectionManager.removeByID(id);
+                return new Response(ResponseStatus.OK, "Элемент по заданному id был удалён");
+            } else {
+                throw new IllegalArguments("Этот ID не существует");
+            }
         } catch (NumberFormatException e) {
             return new Response(ResponseStatus.ERROR, "Вы ввели не целое число(");
         }

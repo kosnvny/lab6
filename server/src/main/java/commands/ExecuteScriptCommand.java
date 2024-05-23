@@ -1,7 +1,5 @@
 package commands;
 
-import commandLine.ExecuteScriptManager;
-import commandLine.Printable;
 import exceptions.*;
 import managers.CommandManager;
 import managers.FileManager;
@@ -9,22 +7,15 @@ import utility.Request;
 import utility.Response;
 import utility.ResponseStatus;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 /**
  * Класс команды execute_script*/
 public class ExecuteScriptCommand extends Command{
-    /**Поле, отвечающее за вывод информации о работе команды*/
-    private final Printable console;
     /**{@link CommandManager}, запускающий выполнение команд*/
     private final CommandManager commandManager;
     /**{@link FileManager}, работающий с поступившем файлом*/
-    public ExecuteScriptCommand(CommandManager commandManager, Printable console) {
+    public ExecuteScriptCommand(CommandManager commandManager) {
         super("execute_script", "file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
         this.commandManager = commandManager;
-        this.console = console;
     }
     /** Метод для выполнения команды
      * @param request Аргументы команды

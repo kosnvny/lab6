@@ -1,7 +1,5 @@
 package commands;
 
-import commandLine.Console;
-import commandLine.Printable;
 import exceptions.*;
 import managers.CollectionManager;
 import models.Semester;
@@ -12,15 +10,12 @@ import utility.ResponseStatus;
 public class CountLessThanSemesterEnumCommand extends Command{
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
-    /***/
-    private final Printable console;
-    public CountLessThanSemesterEnumCommand(CollectionManager collectionManager, Printable console) {
+    public CountLessThanSemesterEnumCommand(CollectionManager collectionManager) {
         super("count_less_than_semester_enum", " semesterEnum : вывести количество элементов, значение поля semesterEnum которых меньше заданного");
         this.collectionManager = collectionManager;
-        this.console = console;
     }
 
-    /**Абстрактный метод для выполнения команды
+    /**метод для выполнения команды
      * @param request Аргументы команды
      * @return ответ на выполнение команды
      * @throws IllegalArguments Выбрасывается, если получены пустые аргументы

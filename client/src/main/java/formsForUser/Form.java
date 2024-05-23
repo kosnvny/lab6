@@ -1,4 +1,4 @@
-package models.formsForUser;
+package formsForUser;
 
 import exceptions.InvalideForm;
 /**Абстрактный метод для форм*/

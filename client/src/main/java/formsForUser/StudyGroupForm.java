@@ -1,15 +1,15 @@
-package models.formsForUser;
+package formsForUser;
 
 import commandLine.*;
-import managers.FileManager;
+import utility.ExecuteScriptManager;
 import models.StudyGroup;
 
 public class StudyGroupForm extends Form<StudyGroup> {
     private final Printable console;
     private final UserInput userInput;
     public StudyGroupForm(Printable console) {
-        this.console = (FileManager.isIsItInFile() ? new BlankConsole() : console);
-        this.userInput = (FileManager.isIsItInFile() ? new ExecuteScriptManager() : new ConsoleInput());
+        this.console = (Console.isIsItInFile() ? new BlankConsole() : console);
+        this.userInput = (Console.isIsItInFile() ? new ExecuteScriptManager() : new ConsoleInput());
     }
     /**
      * Абстрактный метод, "строящий" новый объект заданного типа

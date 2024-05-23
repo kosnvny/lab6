@@ -61,9 +61,10 @@ public class CommandManager {
         Command command = commands.get(request.getCommandName());
         if (command == null) throw new CommandDoesNotExist("Данной команды не существует");
         Response response = command.execute(request);
-        if (Editors.valueOf(command.getName().toLowerCase(Locale.ROOT)) != null) {
+        try {
+            Editors.valueOf(command.getName().toLowerCase(Locale.ROOT));
             fileManager.writeCollection();
-        }
+        } catch (IllegalArgumentException ignored) {}
         return response;
     }
 }

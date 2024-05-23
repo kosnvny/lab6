@@ -18,7 +18,7 @@ public class AppServer {
             try {
                 port = Integer.parseInt(args[0].trim());
             } catch (NumberFormatException e) {
-                console.printError("вы ввели не число, поэтому будет использоваться порт по умолчанию");
+                console.println("вы ввели не число, поэтому будет использоваться порт по умолчанию");
             }
             CollectionManager collectionManager = new CollectionManager();
             FileManager fileManager = new FileManager(collectionManager, console);
@@ -30,21 +30,21 @@ public class AppServer {
                 return;
             }
             CommandManager commandManager = new CommandManager(fileManager);
-            commandManager.addCommands(List.of(new AddCommand(collectionManager, console),
-                    new ClearCommand(collectionManager, console),
-                    new CountLessThanSemesterEnumCommand(collectionManager, console),
-                    new ExecuteScriptCommand(commandManager, console),
+            commandManager.addCommands(List.of(new AddCommand(collectionManager),
+                    new ClearCommand(collectionManager),
+                    new CountLessThanSemesterEnumCommand(collectionManager),
+                    new ExecuteScriptCommand(commandManager),
                     new ExitCommand(),
-                    new HeadCommand(collectionManager, console),
-                    new HelpCommand(commandManager, console),
-                    new InfoCommand(collectionManager, console),
-                    new PrintDescendingCommand(collectionManager, console),
-                    new PrintUniqueSemesterEnumCommand(collectionManager, console),
-                    new RemoveByIDCommand(collectionManager, console),
+                    new HeadCommand(collectionManager),
+                    new HelpCommand(commandManager),
+                    new InfoCommand(collectionManager),
+                    new PrintDescendingCommand(collectionManager),
+                    new PrintUniqueSemesterEnumCommand(collectionManager),
+                    new RemoveByIDCommand(collectionManager),
                     new RemoveFirstCommand(collectionManager),
-                    new RemoveGreaterCommand(collectionManager, console),
-                    new ShowCommand(collectionManager, console),
-                    new UpdateIDCommand(collectionManager, console)));
+                    new RemoveGreaterCommand(collectionManager),
+                    new ShowCommand(collectionManager),
+                    new UpdateIDCommand(collectionManager)));
             RequestHandler requestHandler = new RequestHandler(commandManager);
             ServerTCP serverTCP = new ServerTCP(port, console, requestHandler, fileManager);
             serverTCP.run();

@@ -1,9 +1,9 @@
 package utility;
 
 import commandLine.Console;
-import commandLine.ExecuteScriptManager;
 import commandLine.Printable;
 import exceptions.*;
+import formsForUser.StudyGroupForm;
 import models.StudyGroup;
 
 import java.io.File;
@@ -16,14 +16,7 @@ import java.util.Scanner;
 public class RuntimeManager {
     /**Поле, отвечающее за вывод информации о работе команды*/
     private final Printable console;
-    private ClientTCP clientTCP;
-    private ClientUDP clientUDP;
-
-    public RuntimeManager(Printable console, ClientUDP clientUDP) {
-        this.console = console;
-        this.clientUDP = clientUDP;
-    }
-
+    private final ClientTCP clientTCP;
     public RuntimeManager(Printable console, ClientTCP clientTCP) {
         this.console = console;
         this.clientTCP = clientTCP;
@@ -31,7 +24,7 @@ public class RuntimeManager {
 
     /**Метод, запускающий приложение*/
     public void letsGo() {
-        try (Scanner userScanner = managers.ScannerManager.getUsersScanner()){
+        try (Scanner userScanner = ScannerManager.getUsersScanner()){
             while (true) {
                 if (!userScanner.hasNext()) throw new ForcedExit("Ввод отсутствует");
                 String[] userCommand = (userScanner.nextLine().trim() + " ").split(" ", 2); // прибавляем пробел, чтобы split выдал два элемента в массиве
@@ -39,7 +32,7 @@ public class RuntimeManager {
                 this.printResponse(response);
                 switch (response.getResponseStatus()){
                     case ASK_FOR_OBJECT -> {
-                        StudyGroup studyGroup = new models.formsForUser.StudyGroupForm(console).build();
+                        StudyGroup studyGroup = new StudyGroupForm(console).build();
                         if(!studyGroup.validate()) throw new InvalideForm("Данные для формы невалидны, объект не был создан(");
                         Response newResponse = clientTCP.sendAndAskResponse(
                                 new Request(
@@ -110,8 +103,8 @@ public class RuntimeManager {
                     case ASK_FOR_OBJECT -> {
                         StudyGroup studyGroup;
                         try{
-                            studyGroup = new models.formsForUser.StudyGroupForm(console).build();
-                            if (!studyGroup.validate()) throw new InvalideForm("");
+                            studyGroup = new StudyGroupForm(console).build();
+                            if (!studyGroup.validate()) throw new InvalideForm("Невалидные значения для формы StudyGroup или Person");
                         } catch (InvalideForm err){
                             console.printError(err.getMessage());
                             continue;
@@ -128,7 +121,7 @@ public class RuntimeManager {
                             this.printResponse(newResponse);
                         }
                     }
-                    case EXIT -> throw new ForcedExit("");
+                    case EXIT -> throw new ForcedExit("Вы вышли из приложения с помощью команды exit");
                     case EXECUTE_SCRIPT -> {
                         this.fileExecution(response.getResponse());
                         ExecuteScriptManager.popRecursion();

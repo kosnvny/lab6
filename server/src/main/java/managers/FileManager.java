@@ -3,7 +3,6 @@ package managers;
 import com.google.gson.*;
 import com.google.gson.reflect.TypeToken;
 import commandLine.Console;
-import commandLine.ExecuteScriptManager;
 import commandLine.Printable;
 import exceptions.ForcedExit;
 import models.StudyGroup;
@@ -56,8 +55,8 @@ public class FileManager {
             String text;
             if (stringBuilder.isEmpty()) text = "";
             else text = stringBuilder.toString();
-            ExecuteScriptManager.addFile(filePath);
-            managers.ScannerManager.setUsersScanner(text);
+            utility.ExecuteScriptManager.addFile(filePath);
+            utility.ScannerManager.setUsersScanner(text);
         } catch (IOException e) {
             throw new ForcedExit("В файле закралась ошибка");
         }

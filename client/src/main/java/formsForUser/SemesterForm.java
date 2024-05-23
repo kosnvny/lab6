@@ -1,15 +1,15 @@
-package models.formsForUser;
+package formsForUser;
 
 import commandLine.*;
-import managers.FileManager;
+import utility.ExecuteScriptManager;
 import models.Semester;
 
 public class SemesterForm extends Form<Semester>{
     private final Printable console;
     private final UserInput userInput;
     public SemesterForm(Printable console) {
-        this.console = (FileManager.isIsItInFile() ? new BlankConsole() : console);
-        this.userInput = (FileManager.isIsItInFile() ? new ExecuteScriptManager() : new ConsoleInput());
+        this.console = (Console.isIsItInFile() ? new BlankConsole() : console);
+        this.userInput = (Console.isIsItInFile() ? new ExecuteScriptManager() : new ConsoleInput());
     }
     /**
      * Абстрактный метод, "строящий" новый объект заданного типа
@@ -26,7 +26,7 @@ public class SemesterForm extends Form<Semester>{
                 return Semester.valueOf(input.toUpperCase());
             } catch (IllegalArgumentException exception) {
                 console.printError("Такого семестра нет в списке");
-                if (FileManager.isIsItInFile()) console.printError("Невалидные значения для цвета в файле");
+                if (Console.isIsItInFile()) console.printError("Невалидные значения для цвета в файле");
             }
         }
     }

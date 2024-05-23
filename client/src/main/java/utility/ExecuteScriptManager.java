@@ -1,10 +1,12 @@
-package commandLine;
+package utility;
+
+import commandLine.UserInput;
 
 import java.io.*;
 import java.util.LinkedList;
 
 /**Класс для работы с вводом из файла*/
-public class ExecuteScriptManager implements UserInput{
+public class ExecuteScriptManager implements UserInput {
     /**{@link LinkedList}, хранящий пути выполненных файлов*/
     private static final LinkedList<String> filesToExecute = new LinkedList<>();
     /**{@link LinkedList}, хранящий файлы, которые мы использовали*/
@@ -22,7 +24,6 @@ public class ExecuteScriptManager implements UserInput{
         filesToExecute.push(new File(path).getAbsolutePath());
         fileReaders.push(new BufferedReader(new InputStreamReader(new FileInputStream(path))));
     }
-
 
     /** Метод, проверяющий скрипты на рекурсию
      * @param args путь до файла

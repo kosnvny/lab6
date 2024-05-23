@@ -1,7 +1,5 @@
 package commands;
 
-import commandLine.Console;
-import commandLine.Printable;
 import exceptions.IllegalArguments;
 import managers.CommandManager;
 import utility.Request;
@@ -9,14 +7,11 @@ import utility.Response;
 import utility.ResponseStatus;
 
 public class HelpCommand extends Command{
-    /**Поле, отвечающее за вывод информации о работе команды*/
-    private final Printable console;
     /**{@link CommandManager}, хранящий все команды*/
     private final CommandManager commandManager;
-    public HelpCommand(CommandManager commandManager, Printable console) {
+    public HelpCommand(CommandManager commandManager) {
         super("help", "вывести справку по доступным командам");
         this.commandManager = commandManager;
-        this.console = console;
     }
     /** Метод для выполнения команды
      * @param request Аргументы команды
