@@ -1,6 +1,8 @@
 package formsForUser;
 
 import commandLine.*;
+import exceptions.InvalideForm;
+import models.Person;
 import utility.ExecuteScriptManager;
 import models.StudyGroup;
 
@@ -17,10 +19,15 @@ public class StudyGroupForm extends Form<StudyGroup> {
      * @return StudyGroup
      */
     @Override
-    public StudyGroup build() {
-        return new StudyGroup(askName(), new CoordinatesForm(console).build(), askCount(), askExpelled(),
-                new FormOfEducationForm(console).build(), new SemesterForm(console).build(),
-                new PersonForm(console).build());
+    public StudyGroup build() throws InvalideForm {
+        Person p = new PersonForm(console).build();
+        if (p.validate()) {
+            return new StudyGroup(askName(), new CoordinatesForm(console).build(), askCount(), askExpelled(),
+                    new FormOfEducationForm(console).build(), new SemesterForm(console).build(),
+                    p);
+        } else {
+            throw new InvalideForm("Невалидные данные для формы Person");
+        }
     }
 
     private String askName() {

@@ -13,15 +13,15 @@ public class RequestHandler {
         try {
             return commandManager.execute(request);
         } catch (CommandDoesNotExist e) {
-            return new Response(ResponseStatus.ERROR, "Команды не существует");
+            return new Response(ResponseStatus.ERROR, e.getMessage()); //"Команды не существует"
         } catch (IllegalArguments e) {
-            return new Response(ResponseStatus.WRONG_ARGUMENTS, "Невалидные аргументы для команды");
+            return new Response(ResponseStatus.WRONG_ARGUMENTS, e.getMessage()); //"Невалидные аргументы для команды"
         } catch (ForcedExit e) {
             return new Response(ResponseStatus.EXIT);
         } catch (RecursionInScriptException e) {
-            return new Response(ResponseStatus.ERROR, "Рекурсия в запускаемых файлах");
+            return new Response(ResponseStatus.ERROR, e.getMessage()); //"Рекурсия в запускаемых файлах"
         } catch (InvalideForm e) {
-            return new Response(ResponseStatus.WRONG_ARGUMENTS, "Форма создания объекта получила невалидные значения");
+            return new Response(ResponseStatus.WRONG_ARGUMENTS, e.getMessage()); //"Форма создания объекта получила невалидные значения"
         }
     }
 }

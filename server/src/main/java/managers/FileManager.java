@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 
-
+// работа с файлом, хранящим коллекцию
 /**Класс, работающий с файлом*/
 public class FileManager {
     /**{@link CollectionManager}, в котором находится коллекция*/

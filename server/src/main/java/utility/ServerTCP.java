@@ -12,15 +12,14 @@ import java.net.SocketAddress;
 import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
-import java.util.Scanner;
 
 public class ServerTCP {
-    private int port;
-    private Printable console;
+    private final int port;
+    private final Printable console;
     private ServerSocketChannel serverSocketChannel;
     private SocketChannel socketChannel;
-    private RequestHandler requestHandler;
-    private FileManager fileManager;
+    private final RequestHandler requestHandler;
+    private final FileManager fileManager;
     BufferedInputStream bis = new BufferedInputStream(System.in);
     BufferedReader br = new BufferedReader(new InputStreamReader(bis));
     public ServerTCP(int port, Printable console, RequestHandler requestHandler, FileManager fileManager) {
@@ -30,7 +29,7 @@ public class ServerTCP {
         this.fileManager = fileManager;
     }
 
-    private void openServerSocket() throws StartingServerException{
+    private void openServerSocket() throws StartingServerException{ // открытие сокета
         try {
             SocketAddress socketAddress = new InetSocketAddress(port);
             serverSocketChannel = ServerSocketChannel.open();
@@ -45,7 +44,7 @@ public class ServerTCP {
         }
     }
 
-    private SocketChannel connectToClient() throws ConnectionErrorException, StartingServerException {
+    private SocketChannel connectToClient() throws ConnectionErrorException { // подключение к клиенту
         try {
             socketChannel = serverSocketChannel.accept();
             return socketChannel;
@@ -54,7 +53,7 @@ public class ServerTCP {
         }
     }
 
-    private boolean processClientRequest(SocketChannel clientSocket) {
+    private boolean processClientRequest(SocketChannel clientSocket) { // обработка полученных запросов
         Request userRequest = null;
         Response responseToUser = null;
         try {
@@ -76,7 +75,7 @@ public class ServerTCP {
         return true;
     }
 
-    public static Request getSocketObjet(SocketChannel channel) throws IOException, ClassNotFoundException {
+    public static Request getSocketObjet(SocketChannel channel) throws IOException, ClassNotFoundException { // чтение объекта из запроса
         ByteBuffer buffer = ByteBuffer.allocate(1024*10);
         while (true) {
             try {
@@ -86,13 +85,11 @@ public class ServerTCP {
                 ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(buf);
                 ObjectInputStream objectInputStream = new ObjectInputStream(byteArrayInputStream);
                 return (Request) objectInputStream.readObject();
-            } catch (StreamCorruptedException e) {
-                //
-            }
+            } catch (StreamCorruptedException ignored) {}
         }
     }
 
-    private static void sendSocketObject(SocketChannel socketChannel, Response response) throws IOException {
+    private static void sendSocketObject(SocketChannel socketChannel, Response response) throws IOException { // отправка объекта клиенту
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         ObjectOutputStream objectOutputStream = new ObjectOutputStream(byteArrayOutputStream);
         objectOutputStream.writeObject(response);
@@ -100,7 +97,7 @@ public class ServerTCP {
         socketChannel.write(ByteBuffer.wrap(byteArrayOutputStream.toByteArray()));
     }
 
-    private void stop() {
+    private void stop() { // закрытие соединения
         class ClosingSocketException extends Exception{}
         try{
             if (socketChannel == null) throw new ClosingSocketException();
@@ -113,19 +110,18 @@ public class ServerTCP {
         }
     }
 
-    public void run(){
+    public void run(){ // запуск соединения
         try{
             openServerSocket();
             while (true) {
                 try {
                     if (br.ready()) {
                         String line = br.readLine();
-                        if (line.equals("save") || line.equals("s")) {
+                        if (line.equals("save") || line.equals("exit")) { // чтобы при save и exit коллекция сохранялась
                             fileManager.writeCollection();
                         }
                     }
                 } catch (IOException ignored) {
-                    //
                 } catch (ForcedExit e) {
                     console.printError(e.getMessage());
                 }
@@ -133,7 +129,7 @@ public class ServerTCP {
                     if(clientSocket == null) continue;
                     clientSocket.configureBlocking(false);
                     if(!processClientRequest(clientSocket)) break;
-                } catch (ConnectionErrorException | StartingServerException ignored) {
+                } catch (ConnectionErrorException ignored) {
                 } catch (IOException exception) {
                     console.printError("Произошла ошибка при попытке завершить соединение с клиентом!");
                 }

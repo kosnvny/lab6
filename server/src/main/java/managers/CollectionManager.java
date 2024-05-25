@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.LinkedList;
 
+// управление коллекцией объектов с серверной стороны
 /**Класс для хранения коллекции и работы с ней*/
 public class CollectionManager {
     /**Коллекция*/
