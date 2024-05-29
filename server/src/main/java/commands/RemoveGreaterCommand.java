@@ -9,7 +9,7 @@ import utility.ResponseStatus;
 
 import java.util.Objects;
 
-public class RemoveGreaterCommand extends Command implements EditingCollection {
+public class RemoveGreaterCommand extends Command implements EditingCollection, CommandsWithElement {
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
     public RemoveGreaterCommand(CollectionManager collectionManager) {

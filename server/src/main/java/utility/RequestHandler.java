@@ -1,10 +1,11 @@
 package utility;
 
+import commands.Command;
 import exceptions.*;
 import managers.CommandManager;
 
 public class RequestHandler {
-    private CommandManager commandManager;
+    private final CommandManager commandManager;
     public RequestHandler(CommandManager commandManager) {
         this.commandManager = commandManager;
     }

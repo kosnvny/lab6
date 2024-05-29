@@ -13,7 +13,7 @@ import java.util.Objects;
 /**
  * Класс команды add
  * */
-public class AddCommand extends Command implements EditingCollection{
+public class AddCommand extends Command implements EditingCollection, CommandsWithElement {
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
     public AddCommand(CollectionManager collectionManager) {

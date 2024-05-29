@@ -1,16 +1,20 @@
 package managers;
 
 import commands.Command;
+import commands.CommandsWithElement;
 import commands.EditingCollection;
 import exceptions.*;
 import models.Person;
 import models.StudyGroup;
 import utility.Request;
 import utility.Response;
+import utility.ResponseStatus;
+import utility.ScannerManager;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Objects;
 
 /**Класс для работы с командами и их запуском*/
 public class CommandManager {
@@ -60,6 +64,10 @@ public class CommandManager {
     public Response execute(Request request) throws CommandDoesNotExist, IllegalArguments, ForcedExit, RecursionInScriptException, InvalideForm {
         Command command = commands.get(request.getCommandName());
         if (command == null) throw new CommandDoesNotExist("Данной команды не существует");
+        if (command instanceof CommandsWithElement) {
+            if (Objects.isNull(request.getStudyGroup())) return new Response(ResponseStatus.ASK_FOR_OBJECT, "команде " + command.getName() + " требуется элемент для манипуляций");
+            else ScannerManager.setUsersScanner(request.getStudyGroup().toString());
+        }
         Response response = command.execute(request);
         if (command instanceof EditingCollection) {
             fileManager.writeCollection();
