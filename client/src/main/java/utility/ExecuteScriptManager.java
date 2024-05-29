@@ -48,7 +48,7 @@ public class ExecuteScriptManager implements UserInput {
     }
 
     public static void popRecursion(){
-        if(filesToExecute.size() >= 1) {
+        if(!filesToExecute.isEmpty()) {
             filesToExecute.pop();
         }
     }

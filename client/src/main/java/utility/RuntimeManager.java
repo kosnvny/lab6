@@ -17,17 +17,20 @@ public class RuntimeManager {
     /**Поле, отвечающее за вывод информации о работе команды*/
     private final Printable console;
     private final ClientTCP clientTCP;
-    public RuntimeManager(Printable console, ClientTCP clientTCP) {
+    private final Scanner userScanner;
+    public RuntimeManager(Printable console, ClientTCP clientTCP, Scanner userScanner) {
         this.console = console;
         this.clientTCP = clientTCP;
+        this.userScanner = userScanner;
     }
 
     /**Метод, запускающий приложение*/
     public void letsGo() {
-        try (Scanner userScanner = ScannerManager.getUsersScanner()){
+        try {
             while (true) {
                 if (!userScanner.hasNext()) throw new ForcedExit("Ввод отсутствует");
                 String[] userCommand = (userScanner.nextLine().trim() + " ").split(" ", 2); // прибавляем пробел, чтобы split выдал два элемента в массиве
+                clientTCP.connectToServer();
                 Response response = clientTCP.sendAndAskResponse(new Request(userCommand[0].trim(), userCommand[1].trim()));
                 this.printResponse(response);
                 switch (response.getResponseStatus()){
@@ -56,8 +59,8 @@ public class RuntimeManager {
                 }
             }
         } catch (ForcedExit e) {
-            console.printError(e.getMessage());
-            return;
+            console.println(e.getMessage());
+            return; // чтобы клиент вышел из приложения
         } catch (InvalideForm e) {
             console.printError(e.getMessage());
         }
@@ -72,7 +75,7 @@ public class RuntimeManager {
                 }
             }
             case ERROR -> console.printError(response.getResponse());
-            case WRONG_ARGUMENTS -> console.printError("Неверное использование команды!");
+            case WRONG_ARGUMENTS -> console.printError("Неверное использование команды!\n" + response.getResponse());
             default -> {}
         }
     }
@@ -130,8 +133,8 @@ public class RuntimeManager {
                 }
             }
             ExecuteScriptManager.popFile();
-        } catch (FileNotFoundException fileNotFoundException){
-            console.printError("Такого файла не существует");
+        } catch (FileNotFoundException e){
+            console.printError("Фаёла нет (((((");
         } catch (IOException e) {
             console.printError("Ошибка ввода вывода");
         }

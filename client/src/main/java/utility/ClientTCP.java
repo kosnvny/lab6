@@ -31,8 +31,6 @@ public class ClientTCP {
             if (countOfReconnections > 0) console.println("Повторим подключение!");
             this.socket = new Socket(host, port);
             this.objectOutputStream = new ObjectOutputStream(socket.getOutputStream());
-        } catch (IllegalArgumentException e) {
-            console.printError("адрес сервера введён некорректно(");
         } catch (IOException e) {
             console.printError("ошибка при соединении с сервером");
         }
@@ -51,8 +49,8 @@ public class ClientTCP {
     public Response sendAndAskResponse(Request request) {
         while (true) {
             try {
-                if (Objects.isNull(objectOutputStream)) throw new IOException();
                 if (request.isEmpty()) return new Response(ResponseStatus.ERROR, "Запрос пуст!");
+                if (Objects.isNull(objectOutputStream)) throw new IOException();
                 objectOutputStream.writeObject(request);
                 objectOutputStream.flush();
                 this.objectInputStream = new ObjectInputStream(socket.getInputStream());

@@ -1,7 +1,7 @@
 package managers;
 
 import commands.Command;
-import commands.Editors;
+import commands.EditingCollection;
 import exceptions.*;
 import models.Person;
 import models.StudyGroup;
@@ -61,10 +61,9 @@ public class CommandManager {
         Command command = commands.get(request.getCommandName());
         if (command == null) throw new CommandDoesNotExist("Данной команды не существует");
         Response response = command.execute(request);
-        try {
-            Editors.valueOf(command.getName().toLowerCase(Locale.ROOT));
+        if (command instanceof EditingCollection) {
             fileManager.writeCollection();
-        } catch (IllegalArgumentException ignored) {}
+        }
         return response;
     }
 }

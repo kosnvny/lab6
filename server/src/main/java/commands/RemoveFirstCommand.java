@@ -6,7 +6,7 @@ import utility.Request;
 import utility.Response;
 import utility.ResponseStatus;
 
-public class RemoveFirstCommand extends Command{
+public class RemoveFirstCommand extends Command implements EditingCollection{
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
     public RemoveFirstCommand(CollectionManager collectionManager) {

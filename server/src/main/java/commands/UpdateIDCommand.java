@@ -9,7 +9,7 @@ import utility.ResponseStatus;
 
 import java.util.Objects;
 
-public class UpdateIDCommand extends Command{
+public class UpdateIDCommand extends Command implements EditingCollection{
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
     public UpdateIDCommand(CollectionManager collectionManager) {

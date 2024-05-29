@@ -11,7 +11,7 @@ import utility.ServerTCP;
 import java.util.List;
 
 public class AppServer {
-    public static int port = 4567; // change!
+    public static int port = 8569;
     public static Printable console = new BlankConsole();
     public static void main(String[] args) {
         CollectionManager collectionManager = new CollectionManager();
@@ -27,7 +27,7 @@ public class AppServer {
         commandManager.addCommands(List.of(new AddCommand(collectionManager),
                 new ClearCommand(collectionManager),
                 new CountLessThanSemesterEnumCommand(collectionManager),
-                new ExecuteScriptCommand(commandManager),
+                new ExecuteScriptCommand(),
                 new ExitCommand(),
                 new HeadCommand(collectionManager),
                 new HelpCommand(commandManager),

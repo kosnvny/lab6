@@ -55,12 +55,12 @@ public class ServerTCP {
 
     private boolean processClientRequest(SocketChannel clientSocket) { // обработка полученных запросов
         Request userRequest = null;
-        Response responseToUser = null;
+        Response response = null;
         try {
             Request request = getSocketObjet(clientSocket);
             console.println(request.toString());
-            responseToUser = requestHandler.handle(request);
-            sendSocketObject(clientSocket, responseToUser);
+            response = requestHandler.handle(request);
+            sendSocketObject(clientSocket, response);
         } catch (ClassNotFoundException exception) {
             console.printError("Произошла ошибка при чтении полученных данных!");
         } catch (InvalidClassException | NotSerializableException exception) {
@@ -75,7 +75,7 @@ public class ServerTCP {
         return true;
     }
 
-    public static Request getSocketObjet(SocketChannel channel) throws IOException, ClassNotFoundException { // чтение объекта из запроса
+    private static Request getSocketObjet(SocketChannel channel) throws IOException, ClassNotFoundException { // чтение объекта из запроса
         ByteBuffer buffer = ByteBuffer.allocate(1024*10);
         while (true) {
             try {
@@ -104,9 +104,9 @@ public class ServerTCP {
             socketChannel.close();
             serverSocketChannel.close();
         } catch (ClosingSocketException exception) {
-            console.printError("Невозможно завершить работу еще не запущенного сервера!");
+            console.printError("Невозможно завершить работу еще не запущенного сервера(");
         } catch (IOException exception) {
-            console.printError("Произошла ошибка при завершении работы сервера!");
+            console.printError("Произошла ошибка при завершении работы сервера(");
         }
     }
 

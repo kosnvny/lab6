@@ -6,7 +6,7 @@ import utility.Request;
 import utility.Response;
 import utility.ResponseStatus;
 
-public class RemoveByIDCommand extends Command {
+public class RemoveByIDCommand extends Command implements EditingCollection{
     /**{@link CollectionManager}, в котором хранится коллекция и с помощью которого выполняется команда*/
     private final CollectionManager collectionManager;
     public RemoveByIDCommand(CollectionManager collectionManager) {
