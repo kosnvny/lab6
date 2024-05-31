@@ -2,6 +2,7 @@ package models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.Objects;
@@ -12,7 +13,7 @@ interface NameRange<T> {
     long getHashCode(T t);
 }
 /**Класс, отвечающий за информацию об учебной группе*/
-public class StudyGroup implements Validator, Comparable<StudyGroup> {
+public class StudyGroup implements Validator, Comparable<StudyGroup>, Serializable {
     /**Айди группы*/
     @SerializedName("ID")
     private Integer id; //Поле не может быть null, Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически

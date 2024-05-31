@@ -47,41 +47,43 @@ public class ClientTCP {
     }
 
     public Response sendAndAskResponse(Request request) {
-        while (true) {
-            try {
-                if (request.isEmpty()) return new Response(ResponseStatus.ERROR, "Запрос пуст!");
-                if (Objects.isNull(objectOutputStream)) throw new IOException();
-                objectOutputStream.writeObject(request);
-                objectOutputStream.flush();
-                this.objectInputStream = new ObjectInputStream(socket.getInputStream());
-                Response response = (Response) objectInputStream.readObject();
-                this.disconnectFromServer();
-                countOfReconnections = 0;
-                return response;
-            } catch (IOException e) {
-                if (countOfReconnections == 0) {
-                    console.println("Попробуем подключиться снова!");
-                    connectToServer();
-                    countOfReconnections++;
-                    continue;
-                } else {
-                    console.printError("Соединение с сервером разорвано(");
-                }
-                try {
-                    countOfReconnections++;
-                    if (countOfReconnections >= maxCountOfConnections) {
-                        console.printError("Превышено максимальное количество переподключений: " + maxCountOfConnections);
-                        return new Response(ResponseStatus.ERROR);
-                    }
-                    console.println("Повторно подключимся через " + reconnectionTimeout / 1000 + " секунд.");
-                    Thread.sleep(reconnectionTimeout);
-                    connectToServer();
-                } catch (Exception ex) {
-                    console.printError("Попытка соединения с сервером неуспешна(");
-                }
-            } catch (ClassNotFoundException e) {
-                throw new RuntimeException(e);
+        //while (true) { // на приколе убрала проверить что будет
+        try {
+            if (request.isEmpty()) return new Response(ResponseStatus.ERROR, "Запрос пуст!");
+            if (Objects.isNull(objectOutputStream)) throw new IOException("OOS is null");
+            objectOutputStream.writeObject(request);
+            objectOutputStream.flush();
+            this.objectInputStream = new ObjectInputStream(socket.getInputStream());
+            Response response = (Response) objectInputStream.readObject();
+            //this.disconnectFromServer(); это был эксперимент
+            countOfReconnections = 0;
+            return response;
+        } catch (IOException e) {
+            e.printStackTrace(); // проверка чё вообще происходит
+            if (countOfReconnections == 0) {
+                console.println("Попробуем подключиться снова!");
+                connectToServer();
+                countOfReconnections++;
+                //continue;
+            } else {
+                console.printError("Соединение с сервером разорвано(");
             }
+            try {
+                countOfReconnections++;
+                if (countOfReconnections >= maxCountOfConnections) {
+                    console.printError("Превышено максимальное количество переподключений: " + maxCountOfConnections);
+                    return new Response(ResponseStatus.ERROR);
+                }
+                console.println("Повторно подключимся через " + reconnectionTimeout / 1000 + " секунд.");
+                Thread.sleep(reconnectionTimeout);
+                connectToServer();
+            } catch (Exception ex) {
+                console.printError("Попытка соединения с сервером неуспешна(");
+            }
+        } catch (ClassNotFoundException e) {
+            throw new RuntimeException(e);
         }
+        //}
+        return new Response(ResponseStatus.ERROR);
     }
 }

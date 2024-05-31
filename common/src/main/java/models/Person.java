@@ -2,10 +2,11 @@ package models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**Класс, отвечающий за человека*/
-public class Person implements Validator {
+public class Person implements Validator, Serializable {
     /**Имя человека*/
     @SerializedName("Name")
     private String name; //Поле не может быть null, Строка не может быть пустой

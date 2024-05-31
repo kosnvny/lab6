@@ -2,8 +2,10 @@ package models;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
+
 /**Класс, отвечающий за координаты*/
-public class Coordinates implements Validator {
+public class Coordinates implements Validator, Serializable {
     @SerializedName("x")
     private float x;
     @SerializedName("y")
