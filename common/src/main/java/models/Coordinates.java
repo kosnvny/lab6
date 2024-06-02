@@ -22,6 +22,22 @@ public class Coordinates implements Validator, Serializable {
         return this.y != null && this.y > -964;
     }
 
+    public float getX() {
+        return x;
+    }
+
+    public void setX(float x) {
+        this.x = x;
+    }
+
+    public Float getY() {
+        return y;
+    }
+
+    public void setY(Float y) {
+        this.y = y;
+    }
+
     @Override
     public String toString() {
         return "Координата x=" + x + ", координата y=" + y + '}';

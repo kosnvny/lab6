@@ -97,6 +97,10 @@ public class StudyGroup implements Validator, Comparable<StudyGroup>, Serializab
         return Integer.compare((int) comp.getHashCode(n1), (int) comp.getHashCode(n2));
     }
 
+    public int getDistance() {
+        return (int) Math.sqrt(Math.pow(coordinates.getX(), 2) + Math.pow(coordinates.getY(), 2));
+    }
+
     public Integer getId() {
         return id;
     }

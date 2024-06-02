@@ -35,9 +35,6 @@ public class ServerTCP {
             serverSocketChannel = ServerSocketChannel.open();
             serverSocketChannel.bind(socketAddress);
             serverSocketChannel.configureBlocking(false);
-        } catch (IllegalArgumentException exception) {
-            console.printError("Порт '" + port + "' находится за пределами возможных значений!");
-            throw new StartingServerException();
         } catch (IOException exception) {
             console.printError("Произошла ошибка при попытке использовать порт '" + port + "'!");
             throw new StartingServerException();
@@ -61,11 +58,11 @@ public class ServerTCP {
             console.println(request.toString());
             response = requestHandler.handle(request);
             sendSocketObject(clientSocket, response);
-        } catch (ClassNotFoundException exception) {
+        } catch (ClassNotFoundException e) {
             console.printError("Произошла ошибка при чтении полученных данных!");
-        } catch (InvalidClassException | NotSerializableException exception) {
+        } catch (InvalidClassException e) {
             console.printError("Произошла ошибка при отправке данных на клиент!");
-        } catch (IOException exception) {
+        } catch (IOException e) {
             if (userRequest == null) {
                 console.printError("Непредвиденный разрыв соединения с клиентом!");
             } else {

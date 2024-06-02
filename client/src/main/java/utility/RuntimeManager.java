@@ -26,11 +26,11 @@ public class RuntimeManager {
 
     /**Метод, запускающий приложение*/
     public void letsGo() {
+        clientTCP.connectToServer(); // переместила из try
         try {
             while (true) {
                 if (!userScanner.hasNext()) throw new ForcedExit("Ввод отсутствует");
                 String[] userCommand = (userScanner.nextLine().trim() + " ").split(" ", 2); // прибавляем пробел, чтобы split выдал два элемента в массиве
-                clientTCP.connectToServer();
                 Response response = clientTCP.sendAndAskResponse(new Request(userCommand[0].trim(), userCommand[1].trim()));
                 this.printResponse(response);
                 switch (response.getResponseStatus()){

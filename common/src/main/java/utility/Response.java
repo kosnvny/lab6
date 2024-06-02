@@ -23,7 +23,7 @@ public class Response implements Serializable {
         this.responseStatus = responseStatus;
         this.response = response.trim();
         this.collection = collection.stream()
-                .sorted(Comparator.comparing(StudyGroup::getId))
+                .sorted(Comparator.comparing(StudyGroup::getDistance)) // поменять на местоположение
                 .toList();
     }
 
