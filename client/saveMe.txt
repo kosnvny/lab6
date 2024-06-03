@@ -1,0 +1,42 @@
+[
+  {
+    "ID": 1,
+    "Name": "dfghj",
+    "Coordinates": {
+      "x": 10.0,
+      "y": 10.0
+    },
+    "CreationDate": "2024-06-03T12:02:25.1036874",
+    "StudentsCount": 4652,
+    "ShouldBeExpelled": 895,
+    "FormOfEducation": "DISTANCE_EDUCATION",
+    "SemesterEnum": "FOURTH",
+    "GroupAdmin": {
+      "Name": "vghyhbnk",
+      "Weight": 86.0,
+      "PassportID": "10026",
+      "HairColor": "GREEN",
+      "Nationality": "INDIA"
+    }
+  },
+  {
+    "ID": 2,
+    "Name": "iuyghhbjnk",
+    "Coordinates": {
+      "x": 89562.0,
+      "y": 6.0
+    },
+    "CreationDate": "2024-06-03T12:03:21.6503992",
+    "StudentsCount": 541,
+    "ShouldBeExpelled": 4,
+    "FormOfEducation": "DISTANCE_EDUCATION",
+    "SemesterEnum": "FIRST",
+    "GroupAdmin": {
+      "Name": "dcfgtyhujk",
+      "Weight": 852.0,
+      "PassportID": "10026",
+      "HairColor": "GREEN",
+      "Nationality": "RUSSIA"
+    }
+  }
+]

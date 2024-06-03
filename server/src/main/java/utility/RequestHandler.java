@@ -18,7 +18,7 @@ public class RequestHandler {
         } catch (IllegalArguments e) {
             return new Response(ResponseStatus.WRONG_ARGUMENTS, e.getMessage()); //"Невалидные аргументы для команды"
         } catch (ForcedExit e) {
-            return new Response(ResponseStatus.EXIT);
+            return new Response(ResponseStatus.EXIT, e.getMessage());
         } catch (RecursionInScriptException e) {
             return new Response(ResponseStatus.ERROR, e.getMessage()); //"Рекурсия в запускаемых файлах"
         } catch (InvalideForm e) {

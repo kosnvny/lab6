@@ -35,6 +35,7 @@ public class RuntimeManager {
                 this.printResponse(response);
                 switch (response.getResponseStatus()){
                     case ASK_FOR_OBJECT -> {
+                        console.println(response.getResponse());
                         StudyGroup studyGroup = new StudyGroupForm(console).build();
                         if(!studyGroup.validate()) throw new InvalideForm("Данные для формы невалидны, объект не был создан(");
                         Response newResponse = clientTCP.sendAndAskResponse(
@@ -108,8 +109,8 @@ public class RuntimeManager {
                         try{
                             studyGroup = new StudyGroupForm(console).build();
                             if (!studyGroup.validate()) throw new InvalideForm("Невалидные значения для формы StudyGroup или Person");
-                        } catch (InvalideForm err){
-                            console.printError(err.getMessage());
+                        } catch (InvalideForm e){
+                            console.printError(e.getMessage());
                             continue;
                         }
                         Response newResponse = clientTCP.sendAndAskResponse(
@@ -134,7 +135,7 @@ public class RuntimeManager {
             }
             ExecuteScriptManager.popFile();
         } catch (FileNotFoundException e){
-            console.printError("Фаёла нет (((((");
+            console.printError("Файла нет (((((");
         } catch (IOException e) {
             console.printError("Ошибка ввода вывода");
         }

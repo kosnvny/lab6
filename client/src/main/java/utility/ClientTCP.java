@@ -57,6 +57,7 @@ public class ClientTCP {
                 Response response = (Response) objectInputStream.readObject();
                 //this.disconnectFromServer(); //это был эксперимент, и он оказался удачным
                 // здесь это не нужно, т.к. на сложных командах он отлетает на переподключение
+                // upd он всё равно отлетает на переподключение :(
                 countOfReconnections = 0;
                 return response;
             } catch (IOException e) {

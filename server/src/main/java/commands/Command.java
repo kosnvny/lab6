@@ -4,11 +4,12 @@ import exceptions.*;
 import utility.Request;
 import utility.Response;
 
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  * Абстрактный класс для всех команд*/
-public abstract class Command {
+public abstract class Command implements Serializable {
     /**Название команды*/
     private final String name;
     /**Описание команды*/
