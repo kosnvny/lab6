@@ -1,25 +1,5 @@
 [
   {
-    "ID": 1,
-    "Name": "dfghj",
-    "Coordinates": {
-      "x": 10.0,
-      "y": 10.0
-    },
-    "CreationDate": "2024-06-03T12:02:25.1036874",
-    "StudentsCount": 4652,
-    "ShouldBeExpelled": 895,
-    "FormOfEducation": "DISTANCE_EDUCATION",
-    "SemesterEnum": "FOURTH",
-    "GroupAdmin": {
-      "Name": "vghyhbnk",
-      "Weight": 86.0,
-      "PassportID": "10026",
-      "HairColor": "GREEN",
-      "Nationality": "INDIA"
-    }
-  },
-  {
     "ID": 2,
     "Name": "iuyghhbjnk",
     "Coordinates": {
@@ -34,9 +14,109 @@
     "GroupAdmin": {
       "Name": "dcfgtyhujk",
       "Weight": 852.0,
-      "PassportID": "10026",
+      "PassportID": "110291",
       "HairColor": "GREEN",
       "Nationality": "RUSSIA"
+    }
+  },
+  {
+    "ID": 3,
+    "Name": "cringe",
+    "Coordinates": {
+      "x": 98456.0,
+      "y": 95.0
+    },
+    "CreationDate": "2024-06-03T12:04:26.6503992",
+    "StudentsCount": 542,
+    "ShouldBeExpelled": 74,
+    "FormOfEducation": "DISTANCE_EDUCATION",
+    "SemesterEnum": "SECOND",
+    "GroupAdmin": {
+      "Name": "DVK",
+      "Weight": 85.0,
+      "PassportID": "1213206",
+      "HairColor": "GREEN",
+      "Nationality": "RUSSIA"
+    }
+  },
+  {
+    "ID": 4,
+    "Name": "dfghj",
+    "Coordinates": {
+      "x": 10.0,
+      "y": 10.0
+    },
+    "CreationDate": "2024-06-04T09:19:37.8995924",
+    "StudentsCount": 4652,
+    "ShouldBeExpelled": 895,
+    "FormOfEducation": "DISTANCE_EDUCATION",
+    "SemesterEnum": "FOURTH",
+    "GroupAdmin": {
+      "Name": "vghyhbnk",
+      "Weight": 86.0,
+      "PassportID": "10026",
+      "HairColor": "GREEN",
+      "Nationality": "INDIA"
+    }
+  },
+  {
+    "ID": 5,
+    "Name": "dfghj",
+    "Coordinates": {
+      "x": 10.0,
+      "y": 10.0
+    },
+    "CreationDate": "2024-06-04T10:21:05.0108189",
+    "StudentsCount": 4652,
+    "ShouldBeExpelled": 895,
+    "FormOfEducation": "DISTANCE_EDUCATION",
+    "SemesterEnum": "FOURTH",
+    "GroupAdmin": {
+      "Name": "vghyhbnk",
+      "Weight": 86.0,
+      "PassportID": "10026",
+      "HairColor": "GREEN",
+      "Nationality": "INDIA"
+    }
+  },
+  {
+    "ID": 6,
+    "Name": "P3100",
+    "Coordinates": {
+      "x": 80.5,
+      "y": 60.7
+    },
+    "CreationDate": "2024-06-04T10:21:55.7712936",
+    "StudentsCount": 25,
+    "ShouldBeExpelled": 1,
+    "FormOfEducation": "FULL_TIME_EDUCATION",
+    "SemesterEnum": "FIRST",
+    "GroupAdmin": {
+      "Name": "dvk",
+      "Weight": 75.0,
+      "PassportID": "10026",
+      "HairColor": "WHITE",
+      "Nationality": "RUSSIA"
+    }
+  },
+  {
+    "ID": 7,
+    "Name": "memes",
+    "Coordinates": {
+      "x": 80.6,
+      "y": 80.4
+    },
+    "CreationDate": "2024-06-04T10:21:56.0062822",
+    "StudentsCount": 80,
+    "ShouldBeExpelled": 7,
+    "FormOfEducation": "DISTANCE_EDUCATION",
+    "SemesterEnum": "SECOND",
+    "GroupAdmin": {
+      "Name": "leo",
+      "Weight": 75.0,
+      "PassportID": "110291",
+      "HairColor": "RED",
+      "Nationality": "ITALY"
     }
   }
 ]

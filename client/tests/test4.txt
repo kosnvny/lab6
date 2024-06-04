@@ -1,0 +1,4 @@
+help
+info
+print_descending
+execute_script C:\Users\lizun\IdeaProjects\lab6\client\tests\test3.txt

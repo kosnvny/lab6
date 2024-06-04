@@ -33,6 +33,7 @@ public class AddCommand extends Command implements EditingCollection, CommandsWi
             return new Response(ResponseStatus.ASK_FOR_OBJECT, "Требуется объект для выполнения команды " + getName());
         } else {
             StudyGroup.updateID(collectionManager.getCollection());
+            Person.setSeriesAndNumber(collectionManager.getCollection());
             request.getStudyGroup().setId(StudyGroup.newID());
             collectionManager.addElement(request.getStudyGroup());
             return new Response(ResponseStatus.OK, "Объект был добавлен в коллекцию");

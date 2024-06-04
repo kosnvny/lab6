@@ -3,6 +3,7 @@ package models;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.Collection;
 import java.util.Objects;
 
 /**Класс, отвечающий за человека*/
@@ -33,6 +34,15 @@ public class Person implements Validator, Serializable {
     private String setSeriesAndNumber() {
         seriesAndNumber = 11*seriesAndNumber + 5;
         return seriesAndNumber.toString();
+    }
+
+    public static void setSeriesAndNumber(Collection<StudyGroup> collection) {
+        long maxx = 0;
+        for(StudyGroup sG: collection) {
+            if (Long.parseLong(sG.getGroupAdmin().passportID) > maxx) {
+                maxx = Long.parseLong(sG.getGroupAdmin().passportID);
+            }
+        }
     }
 
     public String getName() {

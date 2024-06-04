@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import commandLine.Console;
 import commandLine.Printable;
 import exceptions.ForcedExit;
+import models.Person;
 import models.StudyGroup;
 
 import java.io.*;
@@ -81,6 +82,7 @@ public class FileManager {
             LinkedList<StudyGroup> collection = gson.fromJson(jsonString.toString(), collectionType);
             collectionManager.addElements(collection);
             StudyGroup.updateID(collection);
+            Person.setSeriesAndNumber(collection); //чтобы паспорта не повторялись (или паспорты)
             console.println("Коллекция успешна загружена!");
             fis.close();
             bis.close();
