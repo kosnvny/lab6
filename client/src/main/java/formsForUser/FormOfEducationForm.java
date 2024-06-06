@@ -1,8 +1,8 @@
 package formsForUser;
 
 import commandLine.*;
-import utility.ExecuteScriptManager;
 import models.FormOfEducation;
+import utility.ExecuteScriptManager;
 
 public class FormOfEducationForm extends Form<FormOfEducation>{
     private final Printable console;

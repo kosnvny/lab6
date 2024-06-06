@@ -13,7 +13,6 @@ import utility.ScannerManager;
 
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Objects;
 
 /**Класс для работы с командами и их запуском*/

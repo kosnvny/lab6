@@ -1,8 +1,8 @@
 package formsForUser;
 
 import commandLine.*;
-import utility.ExecuteScriptManager;
 import models.Coordinates;
+import utility.ExecuteScriptManager;
 
 public class CoordinatesForm extends Form<Coordinates>{
     private final Printable console;

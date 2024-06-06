@@ -107,6 +107,7 @@ public class ServerTCP {
         }
     }
 
+    // run fast for your mother run fast for your father!
     public void run(){ // запуск соединения
         try{
             openServerSocket();

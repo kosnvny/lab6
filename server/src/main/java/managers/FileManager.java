@@ -56,7 +56,7 @@ public class FileManager {
             String text;
             if (stringBuilder.isEmpty()) text = "";
             else text = stringBuilder.toString();
-            utility.ExecuteScriptManager.addFile(filePath);
+            //utility.ExecuteScriptManager.addFile(filePath);
             utility.ScannerManager.setUsersScanner(text);
         } catch (IOException e) {
             throw new ForcedExit("В файле закралась ошибка");

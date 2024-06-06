@@ -1,8 +1,8 @@
 package formsForUser;
 
 import commandLine.*;
-import utility.ExecuteScriptManager;
 import models.Colour;
+import utility.ExecuteScriptManager;
 
 public class ColourForm extends Form<Colour> {
     private final Printable console;

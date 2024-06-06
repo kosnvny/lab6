@@ -1,8 +1,8 @@
 package formsForUser;
 
 import commandLine.*;
-import utility.ExecuteScriptManager;
 import models.Person;
+import utility.ExecuteScriptManager;
 
 public class PersonForm extends Form<Person>{
     private final Printable console;

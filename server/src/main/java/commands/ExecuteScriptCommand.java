@@ -1,8 +1,6 @@
 package commands;
 
 import exceptions.*;
-import managers.CommandManager;
-import managers.FileManager;
 import utility.Request;
 import utility.Response;
 import utility.ResponseStatus;
@@ -10,7 +8,6 @@ import utility.ResponseStatus;
 /**
  * Класс команды execute_script*/
 public class ExecuteScriptCommand extends Command{
-    /**{@link FileManager}, работающий с поступившем файлом*/
     public ExecuteScriptCommand() {
         super("execute_script", "file_name : считать и исполнить скрипт из указанного файла. В скрипте содержатся команды в таком же виде, в котором их вводит пользователь в интерактивном режиме.");
     }
@@ -21,7 +18,7 @@ public class ExecuteScriptCommand extends Command{
      * @throws RecursionInScriptException Скрипт вызывает сам себя, или скрипты образовали цикл
      * @throws ForcedExit Во время выполнения команды случилось непоправимое
      * @throws CommandDoesNotExist Команда не существует
-     * @throws InvalideForm {@link formsForUser.StudyGroupForm} или {@link formsForUser.PersonForm} получила неверные аргументы*/
+     * @throws InvalideForm формы для объектов получили неверные аргументы*/
     @Override
     public Response execute(Request request) throws IllegalArguments, RecursionInScriptException, ForcedExit, CommandDoesNotExist, InvalideForm {
         if (request.getArgs().isBlank()) throw new IllegalArguments("В команде execute_script аргументом должен быть путь");

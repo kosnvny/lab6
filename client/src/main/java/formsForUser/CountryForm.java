@@ -1,8 +1,8 @@
 package formsForUser;
 
 import commandLine.*;
-import utility.ExecuteScriptManager;
 import models.Country;
+import utility.ExecuteScriptManager;
 
 public class CountryForm extends Form<Country>{
     private final Printable console;

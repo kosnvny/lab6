@@ -1,8 +1,8 @@
 package formsForUser;
 
 import commandLine.*;
-import utility.ExecuteScriptManager;
 import models.Semester;
+import utility.ExecuteScriptManager;
 
 public class SemesterForm extends Form<Semester>{
     private final Printable console;

@@ -3,8 +3,8 @@ package formsForUser;
 import commandLine.*;
 import exceptions.InvalideForm;
 import models.Person;
-import utility.ExecuteScriptManager;
 import models.StudyGroup;
+import utility.ExecuteScriptManager;
 
 public class StudyGroupForm extends Form<StudyGroup> {
     private final Printable console;

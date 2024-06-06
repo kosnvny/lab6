@@ -65,14 +65,12 @@ public class StudyGroup implements Validator, Comparable<StudyGroup>, Serializab
         return ++nID;
     }
 
-    public static void updateID(Collection<StudyGroup> collection) {
-        int maxx = 0;
-        for(StudyGroup sG : collection) {
-            if (sG.getId() > maxx) {
-                maxx = sG.getId();
-            }
-        }
-        newId = maxx;
+    public static void updateID(Collection<StudyGroup> collection) { // steam api
+        newId = collection.stream()
+                .filter(Objects::nonNull)
+                .map(StudyGroup::getId)
+                .max(Integer::compareTo)
+                .orElse(0);
     }
 
     /** Метод проверяющий правильность полей
